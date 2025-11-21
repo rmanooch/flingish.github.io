@@ -4,75 +4,100 @@
 <meta charset="UTF-8">
 <title>Finglish to Farsi Converter</title>
 <style>
-body {
-font-family: Arial, sans-serif;
-margin: 40px;
-background: #f7f7f7;
-}
-h2 {
-margin-bottom: 10px;
-}
-textarea {
-width: 100%;
-height: 120px;
-padding: 10px;
-font-size: 18px;
-margin-bottom: 20px;
-border-radius: 8px;
-border: 1px solid #ccc;
-}
-#output {
-font-size: 22px;
-direction: rtl;
-background: white;
-padding: 15px;
-border-radius: 8px;
-border: 1px solid #ccc;
-min-height: 80px;
-}
-button {
-padding: 10px 20px;
-font-size: 18px;
-border: none;
-border-radius: 6px;
-background: #4CAF50;
-color: white;
-cursor: pointer;
-margin-right: 10px;
-}
-button:hover {
-background: #45a049;
-}
+    body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background: #f7f7f7;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    textarea {
+        width: 100%;
+        height: 120px;
+        padding: 10px;
+        font-size: 18px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    #output {
+        font-size: 22px;
+        direction: rtl;
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        min-height: 80px;
+        white-space: pre-wrap;
+    }
+    .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        background: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    button.secondary {
+        background: #2196F3;
+    }
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    button:hover:enabled {
+        filter: brightness(0.95);
+    }
+    .small { font-size: 14px; padding: 8px 12px; }
+    #status { margin-left: 8px; font-size: 14px; color: #333; }
 </style>
 </head>
 <body>
 
-
 <h2>Finglish → Farsi Converter</h2>
 
-
 <textarea id="input" placeholder="Type Finglish here... e.g., salam chetori?"></textarea>
-<button onclick="convert()">Convert</button>
-<button onclick="copyOutput()">Copy Output</button>
-
+<div class="controls">
+  <button id="convertBtn" onclick="convert()">Convert</button>
+  <button id="copyBtn" class="secondary small" onclick="copyOutput()">Copy Output</button>
+  <span id="status" aria-live="polite"></span>
+</div>
 
 <h3>Output:</h3>
-<div id="output"></div>
-
+<div id="output" aria-label="Farsi output"></div>
 
 <script>
 const mapping = {
-"kh": "خ",
-"gh": "غ",
-"sh": "ش",
-"ch": "چ",
-"zh": "ژ",
-"aa": "آ",
+    "kh": "خ",
+    "gh": "غ",
+    "sh": "ش",
+    "ch": "چ",
+    "zh": "ژ",
+    "aa": "آ",
 
-
-"a": "ا",
-"b": "ب",
-"p": "پ",
-"t": "ت",
-"s": "س",
-"j": "ج",
+    "a": "ا",
+    "b": "ب",
+    "p": "پ",
+    "t": "ت",
+    "s": "س",
+    "j": "ج",
+    "h": "ه",
+    "d": "د",
+    "z": "ز",
+    "r": "ر",
+    "f": "ف",
+    "q": "ق",
+    "k": "ک",
+    "g": "گ",
+    "l": "ل",
+    "m": "م",
+    "n": "ن",
+    "
